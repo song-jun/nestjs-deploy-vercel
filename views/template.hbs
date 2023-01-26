@@ -1,0 +1,789 @@
+<html>
+
+<head>
+    <style>
+        th,
+        td {
+            border-top-style: solid;
+            border: 0.5px solid black;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            border-spacing: 0px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            width: 298px;
+        }
+
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table style="width: 298px">
+            <tr>
+                <th style="
+                padding: 0px;
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+                align-items: center;
+                justify-content: center;
+                border-bottom: none;
+              " colspan="2">
+                    <!-- Image -->
+                    <img src="data:image/png;base64,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"
+                        style="width: 84px; height: 34px" />
+                    <!-- End Image  -->
+
+                    <!-- BarCode  -->
+                    ${svgText}
+
+                    <!-- End BarCode  -->
+                </th>
+            </tr>
+            <tr>
+                <td style="padding: 0px; margin: 0px">
+                    <div style="width: full; display: flex; flex-direction: row">
+                        <div style="
+                    width: 18px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                            <p style="
+                      writing-mode: vertical-rl;
+                      font-size: 15px;
+                      transform: rotate(180deg);
+                    ">
+                                FROM (SHIPPER)
+                            </p>
+                        </div>
+                        <div style="width: 183px">
+                            <table>
+                                <tr>
+                                    <th style="
+                          width: 77px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-bottom: none;
+                          border-top: none;
+                        ">
+                                        POSTAL CODE
+                                    </th>
+                                    <th style="
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-left: none;
+                          border-bottom: none;
+                          border-top: none;
+                        ">
+                                        COUNTRY
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="
+                          width: 73px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-bottom: none;
+                        ">
+                                        ${booking.senderPostalCode || ''}
+                                    </td>
+                                    <td style="
+                          width: 105px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-left: none;
+                          padding: 0px;
+                          margin: 0px;
+                          border-bottom: none;
+                        ">
+                                        ${
+                                        senderCountry
+                                        ? senderCountry.value
+                                        : booking.senderCountry || ''
+                                        }
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="
+                          padding: 0px;
+                          height: 15px;
+                          border-bottom: none;
+                          border-right: none;
+                        " colspan="2">
+                                        <div style="
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 100%;
+                          ">
+                                            <div style="
+                              width: 77px;
+                              height: 15px;
+                              font-size: 6px;
+                              font-weight: bold;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                            ">
+                                                CITY
+                                            </div>
+                                            <div style="
+                              width: 105px;
+                              height: 15px;
+                              font-size: 6px;
+                              font-weight: bold;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                            ">
+                                                ${booking.senderProvince || ''}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="
+                          font-size: 12px;
+                          padding: 0px;
+                          height: 15px;
+                          border-bottom: none;
+                        " colspan="2">
+                                        <div style="
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 100%;
+                          ">
+                                            <div style="
+                              width: 77px;
+                              height: 100%;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                              font-size: 6px;
+                            ">
+                                                TEL NO
+                                            </div>
+                                            <div style="width: 105px; font-size: 6px">
+                                                ${booking?.senderPhoneNumber || ''}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: none">
+                                        <div style="height: 30px; border-bottom: none">
+                                            <p style="
+                              font-size: 6px;
+                              width: 45px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                ADDRESS:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking?.senderAddressEn || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="margin: 0px; padding: 0px; border-bottom: none" colspan="2">
+                                        <div style="height: 23px">
+                                            <p style="
+                              font-size: 6px;
+                              width: 40px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                COMPANY:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.senderNameEn || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" style="margin: 0px; padding: 0px; border-bottom: none">
+                                        <div style="height: 23px">
+                                            <p style="
+                              font-size: 6px;
+                              width: 40px;
+                              font-weight: bold;
+                              padding: 2px 3px;
+                              text-align: left;
+                            ">
+                                                NAME:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.senderContactPerson || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="margin: 0px; padding: 0px; border-bottom: none">
+                                        <div style="height: 26px; text-align: left">
+                                            <p style="
+                              font-size: 6px;
+                              width: 50px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                SHIPPER'SREPERENCE
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.senderNote || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin-left: 2px; width: 100px">
+                            <div style="height: 30px; border-bottom: 0.5px solid black">
+                                <p
+                                    style="font-size: 6px; width: 100%; font-weight: bold; text-align: left; padding: 3px 0 0 4px;">
+                                    ACCOUNT:
+                                </p>
+                                <p style="
+                        width: 100%;
+                        font-size: 8px;
+                        font-weight: bold;
+                        text-align: center;
+                        margin-top: 2px;
+                      ">
+                                    ${booking?.customer?.customerCode || ''}
+                                </p>
+                            </div>
+
+                            <div style="
+                      height: 30px;
+                      border-bottom: 0.5px solid black;
+                      border-top: none;
+                      font-size: 10px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      flex-direction: column;
+                    ">
+                                <p style="padding: 0px; margin: 0px">${
+                                    booking.type === BookingType.COMMODITY
+                                    ? 'NON DOCUMENT'
+                                    : 'DOCUMENT'
+                                    }</p>
+                                <p style="padding: 0px; margin: 0px">${
+                                    booking.type === BookingType.COMMODITY
+                                    ? '(SPX)'
+                                    : '(DOX)'
+                                    }</p>
+                            </div>
+
+                            <div style="
+                      height: 12px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      font-weight: bold;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+                                PIECES
+                            </div>
+
+                            <div style="
+                      height: 17px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                      font-weight: bold;
+                    ">
+                                ${sumPieces}
+                            </div>
+
+                            <div style="
+                      height: 23px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      font-weight: bold;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+                                NET WEIGHT
+                            </div>
+
+                            <div style="
+                      height: 23px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 8px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+
+                            </div>
+
+                            <div style="
+                      height: 26px;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                      border-top: none;
+                    ">
+                                WEGHT CHARGE
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border-bottom: none; border-top: none">
+                    <div style="flex-direction: row; display: flex">
+                        <div style="width: 202px; height: 26px">
+                            <p style="
+                      font-size: 6px;
+                      text-align: left;
+                      font-weight: bold;
+                      margin: 0;
+                      padding: 2px 3px;
+                    ">
+                                DESCRIPTION OF GOODS:
+                            </p>
+                            <p style="
+                      width: 100%;
+                      text-align: center;
+                      font-size: 11px;
+                      font-weight: bold;
+                      margin-top: 5px;
+                      margin: 0;
+                      padding: 0;
+                    ">
+                                ${mapShippingItem}
+                            </p>
+                        </div>
+                        <div style="
+                    width: 90px;
+                    font-weight: bold;
+                    border-left: 0.5px solid black;
+                    height: 26px;
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 8px;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+                    padding: 0;
+                  ">
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 0px; margin: 0px">
+                    <div style="width: full; display: flex; flex-direction: row">
+                        <div style="
+                    width: 18px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  ">
+                            <p style="
+                      writing-mode: vertical-rl;
+                      font-size: 15px;
+                      transform: rotate(180deg);
+                    ">
+                                TO ( CONSIGNEE)
+                            </p>
+                        </div>
+
+                        <div style="width: 183px">
+                            <table>
+                                <tr>
+                                    <th style="
+                          width: 77px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-bottom: none;
+                          border-top: none;
+                        ">
+                                        POSTAL CODE
+                                    </th>
+                                    <th style="
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-left: none;
+                          border-bottom: none;
+                          border-top: none;
+                        ">
+                                        COUNTRY
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="
+                          width: 73px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-bottom: none;
+                        ">
+                                        ${booking?.receiverPostalCode || ''}
+                                    </td>
+                                    <td style="
+                          width: 105px;
+                          height: 15px;
+                          font-size: 6px;
+                          font-weight: bold;
+                          border-left: none;
+                          padding: 0px;
+                          margin: 0px;
+                          border-bottom: none;
+                        ">
+                                        ${
+                                        receiverCountry
+                                        ? receiverCountry.value
+                                        : booking.receiverCountry || ''
+                                        }
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="
+                          padding: 0px;
+                          height: 15px;
+                          border-bottom: none;
+                          border-right: none;
+                        " colspan="2">
+                                        <div style="
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 100%;
+                          ">
+                                            <div style="
+                              width: 77px;
+                              height: 15px;
+                              font-size: 6px;
+                              font-weight: bold;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                            ">
+                                                CITY
+                                            </div>
+                                            <div style="
+                              width: 105px;
+                              height: 15px;
+                              font-size: 6px;
+                              font-weight: bold;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                            ">
+                                                ${booking.receiverProvince || ''}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="
+                          font-size: 12px;
+                          padding: 0px;
+                          height: 15px;
+                          border-bottom: none;
+                        " colspan="2">
+                                        <div style="
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 100%;
+                          ">
+                                            <div style="
+                              width: 77px;
+                              height: 100%;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-right: 0.5px solid black;
+                              font-size: 6px;
+                            ">
+                                                TEL NO
+                                            </div>
+                                            <div style="width: 105px; font-size: 6px">
+                                                ${booking?.receiverPhoneNumber || ''}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-bottom: none">
+                                        <div style="height: 30px; border-bottom: none">
+                                            <p style="
+                              font-size: 6px;
+                              width: 45px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                ADDRESS:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.receiverAddress || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="margin: 0px; padding: 0px; border-bottom: none" colspan="2">
+                                        <div style="height: 23px">
+                                            <p style="
+                              font-size: 6px;
+                              width: 40px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                COMPANY:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.receiverName || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" style="margin: 0px; padding: 0px; border-bottom: none">
+                                        <div style="height: 23px">
+                                            <p style="
+                              font-size: 6px;
+                              width: 40px;
+                              font-weight: bold;
+                              padding: 2px 3px;
+                              text-align: left;
+                            ">
+                                                NAME:
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.receiverContactPerson || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="margin: 0px; padding: 0px; border-bottom: none">
+                                        <div style="height: 26px; text-align: left">
+                                            <p style="
+                              font-size: 6px;
+                              width: 150px;
+                              font-weight: bold;
+                              text-align: left;
+                              padding: 2px 3px;
+                            ">
+                                                OTHER: (SPECAIL INSTRUCTION)
+                                            </p>
+                                            <p style="
+                              width: 100%;
+                              text-align: center;
+                              font-size: 6px;
+                            ">
+                                                ${booking.receiverNote || ''}
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="margin-left: 2px; width: 100px">
+                            <div style="
+                      width: 100%;
+                      height: 15px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      flex-direction: row;
+                      align-items: center;
+                      font-weight: bold;
+                      justify-content: center;
+                      display: flex;
+                    ">
+                                <p>DELIVERY TERM</p>
+                            </div>
+
+                            <div style="
+                      width: 100%;
+                      height: 14px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      flex-direction: row;
+                      align-items: center;
+                      font-weight: bold;
+                      justify-content: center;
+                      display: flex;
+                    ">
+                                <p>${await this.mapDeliveryConditionName(
+                                    deliveryCondition,
+                                    )}</p>
+                            </div>
+
+                            <div style="
+                      width: 100%;
+                      height: 15px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      flex-direction: row;
+                      align-items: center;
+                      font-weight: bold;
+                      justify-content: center;
+                      display: flex;
+                    ">
+                                <p>COLIECT CHARGE</p>
+                            </div>
+
+                            <div style="
+                      width: 100%;
+                      height: 14px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      flex-direction: row;
+                      align-items: center;
+                      font-weight: bold;
+                      justify-content: center;
+                      display: flex;
+                    "></div>
+
+                            <div style="
+                      height: 14px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+                                DIMENSIONS
+                            </div>
+
+                            <div style="
+                      height: 38.5px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+
+                            </div>
+                            <div style="
+                      height: 23px;
+                      border-bottom: 0.5px solid black;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      justify-content: center;
+                    ">
+                                CONSIGNEE'S SIGNATURE
+                            </div>
+                            <div style="
+                      height: 25px;
+                      font-size: 6px;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: end;
+                      justify-content: flex-end;
+                      padding-right: 2px;
+                    ">${booking?.parentBooking || ''}</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+</body>
+
+</html>

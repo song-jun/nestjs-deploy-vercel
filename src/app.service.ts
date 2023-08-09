@@ -8,17 +8,7 @@ export class AppService {
    * @param username 用户名
    */
   async findOne(username: string): Promise<any | undefined> {
-    const sql = `
-    SELECT
-      user_id id,
-      real_name realName,
-      password,
-      password_salt salt,
-      role
-    FROM
-      admin_user
-    WHERE
-      account_name = '${username}' `; // 一段平淡无奇的 SQL 查询语句
+    const sql = 'select * from person'; // 一段平淡无奇的 SQL 查询语句
     try {
       const user = (
         await sequelize.query(sql, {
@@ -31,7 +21,7 @@ export class AppService {
       return user;
     } catch (error) {
       console.error(error);
-      return void 0;
+      return error;
     }
   }
   getHello(): string {

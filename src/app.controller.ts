@@ -11,11 +11,16 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('/test')
+  findOne() {
+    return this.appService.findOne('root');
+  }
+
   @Get('/file/:id')
   @Render('index.hbs')
   getFile() {
     return {
-      message: 'A Cá Ngão'
+      message: 'A Cá Ngão',
     };
   }
 }
